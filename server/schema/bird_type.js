@@ -7,25 +7,25 @@ const {
   GraphQLInt,
   GraphQLString
 } = graphql;
-const Lyric = mongoose.model('lyric');
+const Bird = mongoose.model('bird');
 
-const LyricType = new GraphQLObjectType({
-  name:  'LyricType',
+const BirdType = new GraphQLObjectType({
+  name:  'BirdType',
   fields: () => ({
     id: { type: GraphQLID },
     likes: { type: GraphQLInt },
     content: { type: GraphQLString },
-    song: {
-      type: require('./song_type'),
+    entry: {
+      type: require('./entry_type'),
       resolve(parentValue) {
-        return Lyric.findById(parentValue).populate('song')
-          .then(lyric => {
-            console.log(lyric)
-            return lyric.song
+        return Bird.findById(parentValue).populate('entry')
+          .then(bird => {
+            console.log(bird)
+            return bird.entry
           });
       }
     }
   })
 });
 
-module.exports = LyricType;
+module.exports = BirdType;

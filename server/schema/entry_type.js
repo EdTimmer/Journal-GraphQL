@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
-const LyricType = require('./lyric_type');
-const Song = mongoose.model('song');
+const BirdType = require('./bird_type');
+const Entry = mongoose.model('entry');
 
-const SongType = new GraphQLObjectType({
-  name:  'SongType',
+const EntryType = new GraphQLObjectType({
+  name:  'EntryType',
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
-    lyrics: {
-      type: new GraphQLList(LyricType),
+    birds: {
+      type: new GraphQLList(BirdType),
       resolve(parentValue) {
-        return Song.findLyrics(parentValue.id);
+        return Entry.findLyrics(parentValue.id);
       }
     }
   })
 });
 
-module.exports = SongType;
+module.exports = EntryType;

@@ -1,45 +1,45 @@
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql;
 const mongoose = require('mongoose');
-const Song = mongoose.model('song');
-const Lyric = mongoose.model('lyric');
-const SongType = require('./song_type');
-const LyricType = require('./lyric_type');
+const Entry = mongoose.model('entry');
+const Bird = mongoose.model('bird');
+const EntryType = require('./entry_type');
+const BirdType = require('./bird_type');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
     addSong: {
-      type: SongType,
+      type: EntryType,
       args: {
         title: { type: GraphQLString }
       },
       resolve(parentValue, { title }) {
-        return (new Song({ title })).save()
+        return (new Entry({ title })).save()
       }
     },
-    addLyricToSong: {
-      type: SongType,
+    addBirdToEntry: {
+      type: EntryType,
       args: {
         content: { type: GraphQLString },
         songId: { type: GraphQLID }
       },
-      resolve(parentValue, { content, songId }) {
-        return Song.addLyric(songId, content);
+      resolve(parentValue, { content, entryId }) {
+        return Entry.addBird(entryId, content);
       }
     },
-    likeLyric: {
-      type: LyricType,
+    likeBird: {
+      type: BirdType,
       args: { id: { type: GraphQLID } },
       resolve(parentValue, { id }) {
-        return Lyric.like(id);
+        return Bird.like(id);
       }
     },
-    deleteSong: {
-      type: SongType,
+    deleteEntry: {
+      type: EntryType,
       args: { id: { type: GraphQLID } },
       resolve(parentValue, { id }) {
-        return Song.remove({ _id: id });
+        return Entry.remove({ _id: id });
       }
     }
   }

@@ -1,2 +1,2 @@
-require('./song');
-require('./lyric');
+require('./entry');
+require('./bird');

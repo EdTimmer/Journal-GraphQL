@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
 import query from '../queries/fetchSongs';
 
-class SongList extends Component {
+class EntriesList extends Component {
   onSongDelete(id) {
     this.props.mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
@@ -37,6 +37,9 @@ class SongList extends Component {
     // else {
       return (
         <div>
+          <div>
+            <h3>Journal Entries</h3>
+          </div>
           <ul className="collection">
             {this.renderSongs()}
           </ul>
@@ -45,8 +48,7 @@ class SongList extends Component {
             className="btn-floating btn-large red right"     
           >
             <i className="material-icons">add</i>
-          </Link>
-        
+          </Link>        
         </div>
         
       )
@@ -63,6 +65,6 @@ const mutation = gql`
 `;
 
 export default graphql(mutation) (
-  graphql(query)(SongList)
+  graphql(query)(EntriesList)
 )
 
