@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
 
 const app = express();
-
+// "mongodb://edtimmer:journal1@ds063160.mlab.com:63160/bird-journal";
 // Replace with your mongoLab URI
 const MONGO_URI = 'mongodb://danila:danila1@ds157843.mlab.com:57843/lyricaldb';
 if (!MONGO_URI) {
