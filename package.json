@@ -8,7 +8,8 @@
     "url": ""
   },
   "scripts": {
-    "dev": "nodemon index.js --ignore client"
+    "dev": "nodemon index.js --ignore client",
+    "start": "nodemon index.js --ignore client"
   },
   "author": "",
   "license": "ISC",
