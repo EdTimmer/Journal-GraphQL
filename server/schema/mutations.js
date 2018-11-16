@@ -9,7 +9,7 @@ const BirdType = require('./bird_type');
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    addSong: {
+    addEntry: {
       type: EntryType,
       args: {
         title: { type: GraphQLString }
@@ -22,7 +22,7 @@ const mutation = new GraphQLObjectType({
       type: EntryType,
       args: {
         content: { type: GraphQLString },
-        songId: { type: GraphQLID }
+        entryId: { type: GraphQLID }
       },
       resolve(parentValue, { content, entryId }) {
         return Entry.addBird(entryId, content);

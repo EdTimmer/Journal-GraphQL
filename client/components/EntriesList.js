@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
-import query from '../queries/fetchSongs';
+import query from '../queries/fetchEntries';
 
 class EntriesList extends Component {
-  onSongDelete(id) {
+  onEntryDelete(id) {
     this.props.mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
   }
 
-  renderSongs() {
-    return this.props.data.songs.map(({ id, title }) => {
+  renderEntries() {
+    return this.props.data.entries.map(({ id, title }) => {
       return (
         <li key={id} className="collection-item">
-          <Link to={`/songs/${id}`}>
+          <Link to={`/entries/${id}`}>
             {title}
           </Link>
           <i
             className="material-icons"
-            onClick={() => this.onSongDelete(id)}
+            onClick={() => this.onEntryDelete(id)}
           >
             delete
           </i>
@@ -41,10 +41,10 @@ class EntriesList extends Component {
             <h3>Journal Entries</h3>
           </div>
           <ul className="collection">
-            {this.renderSongs()}
+            {this.renderEntries()}
           </ul>
           <Link 
-            to="/songs/new"
+            to="/entries/new"
             className="btn-floating btn-large red right"     
           >
             <i className="material-icons">add</i>
@@ -57,8 +57,8 @@ class EntriesList extends Component {
 }
 
 const mutation = gql`
-  mutation DeleteSong($id: ID) {
-    deleteSong(id: $id) {
+  mutation DeleteEntry($id: ID) {
+    deleteEntry(id: $id) {
       id
     }
   }

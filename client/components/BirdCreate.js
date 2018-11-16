@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
-class LyricCreate extends Component {
+class BirdCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,7 @@ class LyricCreate extends Component {
     this.props.mutate({
       variables: {
         content: this.state.content,
-        songId: this.props.songId
+        entryId: this.props.entryId
       }
     }).then(() => this.setState({ content: '' }))
   }
@@ -23,7 +23,7 @@ class LyricCreate extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
-        <label>Add a Lyric</label>
+        <label>Add a Bird</label>
         <input 
           value={this.state.content}
           onChange={event => this.setState({ content: event.target.value })}
@@ -34,10 +34,10 @@ class LyricCreate extends Component {
 }
 
 const mutation = gql`
-  mutation AddLyricToSong($content: String, $songId: ID) {
-    addLyricToSong(content: $content, songId: $songId) {
+  mutation AddBirdToEntry($content: String, $entryId: ID) {
+    addBirdToEntry(content: $content, entryId: $entryId) {
       id 
-      lyrics {
+      birds {
         id
         content
         likes
@@ -46,4 +46,4 @@ const mutation = gql`
   }
 `;
 
-export default graphql(mutation)(LyricCreate);
+export default graphql(mutation)(BirdCreate);

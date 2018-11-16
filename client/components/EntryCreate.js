@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link, hashHistory } from 'react-router';
-import query from '../queries/fetchSongs';
+import query from '../queries/fetchEntries';
 
 
-class SongCreate extends Component {
+class EntryCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,9 +27,9 @@ class SongCreate extends Component {
     return (
       <div>
         <Link to="/">Back</Link>
-        <h3>Create a New Song</h3>
+        <h3>Create a New Entry</h3>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <label>Song Title:</label>
+          <label>Entry Title:</label>
           <input
             onChange={ event => this.setState({title: event.target.value })}
             value={this.state.value}
@@ -41,11 +41,11 @@ class SongCreate extends Component {
 }
 
 const mutation = gql`
-  mutation AddSong($title: String) {
-    addSong(title: $title) {
+  mutation AddEntry($title: String) {
+    addEntry(title: $title) {
       title
     }
   }
 `;
 
-export default graphql(mutation)(SongCreate);
+export default graphql(mutation)(EntryCreate);

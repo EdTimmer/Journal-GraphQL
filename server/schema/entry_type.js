@@ -12,7 +12,7 @@ const EntryType = new GraphQLObjectType({
     birds: {
       type: new GraphQLList(BirdType),
       resolve(parentValue) {
-        return Entry.findLyrics(parentValue.id);
+        return Entry.findBirds(parentValue.id);
       }
     }
   })

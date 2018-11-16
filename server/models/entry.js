@@ -22,7 +22,6 @@ EntrySchema.statics.addBird = function(id, content) {
     .then(entry => {
       const bird = new Bird({ content, entry })
       entry.birds.push(bird)
-      // song.lyrics = [...song.lyrics, lyric];
       return Promise.all([bird.save(), entry.save()])
         .then(([bird, entry]) => entry);
     });

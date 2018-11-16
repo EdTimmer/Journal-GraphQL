@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-class LyricList extends Component {
+class BirdList extends Component {
 
   onLike(id, likes) {
     this.props.mutate({
       variables: { id },
       optimisticResponse: {
         __typename: 'Mutation',
-        likeLyric: {
+        likeBird: {
           id: id,
-          __typename: 'LyricType',
+          __typename: 'BirdType',
           likes: likes + 1
         }
       }
     });
   }
 
-  renderLyrics() {
-    return this.props.lyrics.map(({ id, content, likes }) => {
+  renderBirds() {
+    return this.props.birds.map(({ id, content, likes }) => {
       return (
         <li key={id} className="collection-item">
           {content}
@@ -40,19 +40,19 @@ class LyricList extends Component {
   render() {
     return (
       <ul className="collection">
-        {this.renderLyrics()}
+        {this.renderBirds()}
       </ul>
     )
   }
 }
 
 const mutation = gql`
-  mutation LikeLyric($id: ID) {
-    likeLyric(id: $id) {
+  mutation LikeBird($id: ID) {
+    likeBird(id: $id) {
       id
       likes
     }
   }
 `;
 
-export default graphql(mutation)(LyricList);
+export default graphql(mutation)(BirdList);

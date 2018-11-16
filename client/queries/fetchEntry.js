@@ -1,11 +1,11 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query SongQuery($id: ID!) {
-    song(id: $id) {
+  query EntryQuery($id: ID!) {
+    entry(id: $id) {
       id
       title
-      lyrics {
+      birds {
         id
         content
         likes
