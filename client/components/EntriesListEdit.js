@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
 import query from '../queries/fetchEntries';
 
-class EntriesList extends Component {
+class EntriesListEdit extends Component {
   onEntryDelete(id) {
     this.props.mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
@@ -17,6 +17,12 @@ class EntriesList extends Component {
           <Link to={`/entries/${id}`}>
             {title}
           </Link>
+          <i
+            className="material-icons"
+            onClick={() => this.onEntryDelete(id)}
+          >
+            delete
+          </i>
         </li>
       );
     });
@@ -31,10 +37,10 @@ class EntriesList extends Component {
     // else {
       return (
         <div>
+          <Link to="/">Home</Link>
           <div>
-            <h3>Journal Entries</h3>
+            <h3>Edit Journal Entries</h3>
           </div>
-          <Link to="/edit">Edit</Link>
           <ul className="collection">
             {this.renderEntries()}
           </ul>
@@ -60,6 +66,6 @@ const mutation = gql`
 `;
 
 export default graphql(mutation) (
-  graphql(query)(EntriesList)
+  graphql(query)(EntriesListEdit)
 )
 

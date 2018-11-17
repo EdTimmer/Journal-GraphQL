@@ -20,7 +20,7 @@ const BirdType = new GraphQLObjectType({
       resolve(parentValue) {
         return Bird.findById(parentValue).populate('entry')
           .then(bird => {
-            console.log(bird)
+            // console.log(bird)
             return bird.entry
           });
       }

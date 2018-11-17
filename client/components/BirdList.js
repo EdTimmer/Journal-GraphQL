@@ -23,7 +23,7 @@ class BirdList extends Component {
       return (
         <li key={id} className="collection-item">
           {content}
-          <div className="vote-box">
+          {/*<div className="vote-box">
             <i 
               className="material-icons"
               onClick={() => this.onLike(id, likes)}
@@ -31,7 +31,7 @@ class BirdList extends Component {
               thumb_up
             </i>
             {likes}
-          </div>
+      </div>*/}
         </li>
       )
     })
@@ -39,9 +39,14 @@ class BirdList extends Component {
 
   render() {
     return (
-      <ul className="collection">
-        {this.renderBirds()}
-      </ul>
+      <div>
+        <div>
+          <h3>Bird List</h3>
+        </div>        
+        <ul className="collection">
+          {this.renderBirds()}
+        </ul>
+      </div>
     )
   }
 }
