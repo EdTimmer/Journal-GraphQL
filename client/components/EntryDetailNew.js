@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Link } from 'react-router';
 import fetchEntry from '../queries/fetchEntry';
 import BirdCreate from './BirdCreate';
+import EditTitle from './EditTitle';
 
 
 class EntryDetailNew extends Component {
@@ -38,27 +39,27 @@ class EntryDetailNew extends Component {
       .then(() => this.props.data.refetch());
   }
 
-  onBirdDelete(id) {        
-    this.props.mutate({ variables: { id, title } })
+  onBirdDelete(id) {
+    this.props.mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
   }
 
   onChange(ev) {
-    this.setState({ [ ev.target.name ]: ev.target.value });
+    this.setState({ [ev.target.name]: ev.target.value });
   }
 
-  onSubmitTitle(event) {
+  onSubmitTitle() {
     // event.preventDefault();
-    this.props.mutate({ 
-      variables: { 
+    this.props.mutate({
+      variables: {
         id: this.props.data.entry.id,
         title: this.state.title
         // title: this.state.title 
-      } 
+      }
     })
       .then(() => this.props.data.refetch());
   }
-  
+
   renderBirds() {
 
     return this.props.data.entry.birds.map(({ id, content, likes }) => {
@@ -80,7 +81,7 @@ class EntryDetailNew extends Component {
     })
   }
   render() {
-    
+
 
     const { entry } = this.props.data
 
@@ -97,16 +98,18 @@ class EntryDetailNew extends Component {
           <Link to="/">Back</Link>
           <button onClick={this.onEdit}>Edit Bird List</button>
           <h3>{entry.title}</h3>
-          
+
           {/*<form>*/}
-            <label>Edit Title:</label>
-            <input
-              onChange={ this.onChange }
-              value={theTitle}
-              name="title"
-            />
-            <button onClick={this.onSubmitTitle(event)}>Change Title</button>
+          <label>Edit Title:</label>
+          <input
+            onChange={this.onChange}
+            value={theTitle}
+            name="title"
+          />
+          <button onClick={this.onSubmitTitle(event)}>Change Title</button>
           {/*</form>*/}
+          <h4>Edit Title Component (New):</h4>
+          <EditTitle id={this.props.data.entry.id} title={this.props.data.entry.title}/>
 
           <div>
             <h3>Birds List</h3>
@@ -122,19 +125,22 @@ class EntryDetailNew extends Component {
 }
 
 const mutation = gql`
-  # mutation DeleteBird($id: ID) {
-  #   deleteBird(id: $id) {
-  #     id
-  #     likes
-  #   }
-  # },
-  mutation editEntry($id: ID, $title: String) {
-    editEntry(id: $id, title: $title) {
+  mutation DeleteBird($id: ID) {
+    deleteBird(id: $id) {
       id
-      title
+      likes
     }
-  }
+  },
+  # mutation editEntry($id: ID, $title: String) {
+  #   editEntry(id: $id, title: $title) {
+  #     id
+  #     title
+  #   }
+  # }
 `;
+
+
+
 
 export default graphql(mutation)(
   graphql(fetchEntry, {
