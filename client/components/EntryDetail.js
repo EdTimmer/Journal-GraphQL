@@ -3,8 +3,8 @@ import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
 import fetchEntry from '../queries/fetchEntry';  //fetching Entry here
 import BirdCreate from './BirdCreate';
-import BirdList from './BirdList';
-import BirdListEdit from './BirdListEdit';
+// import BirdList from './BirdList';
+// import BirdListEdit from './BirdListEdit';
 
 class EntryDetail extends Component {
   constructor(props) {

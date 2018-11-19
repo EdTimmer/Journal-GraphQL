@@ -20,7 +20,6 @@ class EntryCreate extends Component {
       variables: { title: this.state.title },
       refetchQueries: [{ query }]
     }).then(() => hashHistory.push('/'));
-      // .catch(() => )
   }
 
   render() {

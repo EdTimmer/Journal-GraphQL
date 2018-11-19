@@ -10,20 +10,55 @@ class EntryDetailNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      edit: false
+      edit: false,
+      // title: 'state title',
+      id: this.props.data.entry ? this.props.data.entry.id : '',
+      title: this.props.data.entry ? this.props.data.entry.title : ''
     }
     this.onEdit = this.onEdit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmitTitle = this.onSubmitTitle.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data.entry) {
+      this.setState({
+        title: nextProps.data.entry ? nextProps.data.entry.title : 'next props title'
+      });
+    }
   }
 
   onEdit() {
     event.preventDefault();
     this.setState({ edit: !this.state.edit })
   }
-  onBirdDelete(id) {
+
+  onEntryEdit(id) {
     this.props.mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
   }
 
+  onBirdDelete(id) {        
+    this.props.mutate({ variables: { id, title } })
+      .then(() => this.props.data.refetch());
+  }
+
+  onChange(ev) {
+    this.setState({ [ ev.target.name ]: ev.target.value });
+  }
+
+  onSubmitTitle(event) {
+    // event.preventDefault();
+    this.props.mutate({ 
+      variables: { 
+        id: this.props.data.entry.id,
+        title: this.state.title
+        // title: this.state.title 
+      } 
+    })
+      .then(() => this.props.data.refetch());
+  }
+  
   renderBirds() {
 
     return this.props.data.entry.birds.map(({ id, content, likes }) => {
@@ -45,6 +80,7 @@ class EntryDetailNew extends Component {
     })
   }
   render() {
+    
 
     const { entry } = this.props.data
 
@@ -54,11 +90,24 @@ class EntryDetailNew extends Component {
       );
     }
     else {
+      console.log(this.state)
+      const theTitle = this.state.title ? this.state.title : ''
       return (
         <div>
           <Link to="/">Back</Link>
           <button onClick={this.onEdit}>Edit Bird List</button>
           <h3>{entry.title}</h3>
+          
+          {/*<form>*/}
+            <label>Edit Title:</label>
+            <input
+              onChange={ this.onChange }
+              value={theTitle}
+              name="title"
+            />
+            <button onClick={this.onSubmitTitle(event)}>Change Title</button>
+          {/*</form>*/}
+
           <div>
             <h3>Birds List</h3>
             <ul className="collection">
@@ -73,10 +122,16 @@ class EntryDetailNew extends Component {
 }
 
 const mutation = gql`
-  mutation DeleteBird($id: ID) {
-    deleteBird(id: $id) {
+  # mutation DeleteBird($id: ID) {
+  #   deleteBird(id: $id) {
+  #     id
+  #     likes
+  #   }
+  # },
+  mutation editEntry($id: ID, $title: String) {
+    editEntry(id: $id, title: $title) {
       id
-      likes
+      title
     }
   }
 `;

@@ -18,6 +18,24 @@ const mutation = new GraphQLObjectType({
         return (new Entry({ title })).save()
       }
     },
+    editEntry: {
+      type: EntryType,
+      args: {
+        id: { type: GraphQLID },
+        title: { type: GraphQLString }        
+      },
+      // resolve(parentValue, { id, title }) {
+      //   return Entry.findOneAndUpdate(id, title);
+      // }
+      resolve(parentValue, params) {
+        return Entry.findByIdAndUpdate(
+          params.id,
+          { $set: { title: params.title } },
+          { new: true }
+        )
+          .catch(err => new Error(err));
+      }
+    },
     addBirdToEntry: {
       type: EntryType,
       args: {

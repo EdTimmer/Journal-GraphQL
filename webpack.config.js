@@ -18,12 +18,21 @@ module.exports = {
       {
         use: ['style-loader', 'css-loader'],
         test: /\.css$/
-      }
+      },
+      {
+        test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+        use: [
+            {
+                loader: 'url-loader'
+            },
+        ]
+    },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'client/index.html'
     })
-  ]
+  ],
+  
 };

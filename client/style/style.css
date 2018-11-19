@@ -12,3 +12,8 @@
   display: flex;
   align-items: center;
 }
+
+.background {
+  background-image: "../images/bird1.png";
+  /* background-color: aquamarine; */
+}

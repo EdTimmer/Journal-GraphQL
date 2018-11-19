@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
 import query from '../queries/fetchEntries';
+import bird1 from '../images/bird1.png';
 
 class EntriesList extends Component {
   onEntryDelete(id) {
@@ -23,6 +24,7 @@ class EntriesList extends Component {
   }
 
   render() {
+
     if (this.props.data.loading) {
       return (
         <div>Loading...</div>
@@ -30,11 +32,15 @@ class EntriesList extends Component {
     }
     // else {
       return (
-        <div>
+        <div className="background">
+          <img src={bird1} width={400} />
           <div>
             <h3>Journal Entries</h3>
           </div>
+          
           <Link to="/edit">Edit</Link>
+          
+          
           <ul className="collection">
             {this.renderEntries()}
           </ul>

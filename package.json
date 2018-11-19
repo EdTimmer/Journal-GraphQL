@@ -40,5 +40,8 @@
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.9.0"
+  },
+  "devDependencies": {
+    "url-loader": "^1.1.2"
   }
 }
