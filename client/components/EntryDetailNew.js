@@ -17,17 +17,17 @@ class EntryDetailNew extends Component {
       title: this.props.data.entry ? this.props.data.entry.title : ''
     }
     this.onEdit = this.onEdit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.onSubmitTitle = this.onSubmitTitle.bind(this);
+    // this.onChange = this.onChange.bind(this);
+    // this.onSubmitTitle = this.onSubmitTitle.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.data.entry) {
-      this.setState({
-        title: nextProps.data.entry ? nextProps.data.entry.title : 'next props title'
-      });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.data.entry) {
+  //     this.setState({
+  //       title: nextProps.data.entry ? nextProps.data.entry.title : 'next props title'
+  //     });
+  //   }
+  // }
 
   onEdit() {
     event.preventDefault();
@@ -44,21 +44,21 @@ class EntryDetailNew extends Component {
       .then(() => this.props.data.refetch());
   }
 
-  onChange(ev) {
-    this.setState({ [ev.target.name]: ev.target.value });
-  }
+  // onChange(ev) {
+  //   this.setState({ [ev.target.name]: ev.target.value });
+  // }
 
-  onSubmitTitle() {
-    // event.preventDefault();
-    this.props.mutate({
-      variables: {
-        id: this.props.data.entry.id,
-        title: this.state.title
-        // title: this.state.title 
-      }
-    })
-      .then(() => this.props.data.refetch());
-  }
+  // onSubmitTitle() {
+  //   // event.preventDefault();
+  //   this.props.mutate({
+  //     variables: {
+  //       id: this.props.data.entry.id,
+  //       title: this.state.title
+  //       // title: this.state.title 
+  //     }
+  //   })
+  //     .then(() => this.props.data.refetch());
+  // }
 
   renderBirds() {
 
@@ -100,15 +100,15 @@ class EntryDetailNew extends Component {
           <h3>{entry.title}</h3>
 
           {/*<form>*/}
-          <label>Edit Title:</label>
+          {/*<label>Edit Title:</label>
           <input
             onChange={this.onChange}
             value={theTitle}
             name="title"
           />
           <button onClick={this.onSubmitTitle(event)}>Change Title</button>
-          {/*</form>*/}
-          <h4>Edit Title Component (New):</h4>
+          </form>*/}
+        
           <EditTitle id={this.props.data.entry.id} title={this.props.data.entry.title}/>
 
           <div>
