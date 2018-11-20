@@ -25,12 +25,12 @@ class EntryCreate extends Component {
   render() {
     return (
       <div>
-        <Link to="/">Back</Link>
+        <Link to="/">Home</Link>
         <h3>Create a New Entry</h3>
         <form onSubmit={this.onSubmit.bind(this)}>
           <label>Entry Title:</label>
           <input
-            onChange={ event => this.setState({title: event.target.value })}
+            onChange={event => this.setState({ title: event.target.value })}
             value={this.state.value}
           />
         </form>
