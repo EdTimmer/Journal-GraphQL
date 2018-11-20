@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import fetchEntry from '../queries/fetchEntry';
 import BirdCreate from './BirdCreate';
 import EditTitle from './EditTitle';
-
+import EntryDelete from './EntryDelete';
 
 class EntryDetailNew extends Component {
   constructor(props) {
@@ -21,44 +21,20 @@ class EntryDetailNew extends Component {
     // this.onSubmitTitle = this.onSubmitTitle.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.data.entry) {
-  //     this.setState({
-  //       title: nextProps.data.entry ? nextProps.data.entry.title : 'next props title'
-  //     });
-  //   }
-  // }
-
   onEdit() {
     event.preventDefault();
     this.setState({ edit: !this.state.edit })
   }
 
-  onEntryEdit(id) {
-    this.props.mutate({ variables: { id } })
-      .then(() => this.props.data.refetch());
-  }
+  // onEntryEdit(id) {
+  //   this.props.mutate({ variables: { id } })
+  //     .then(() => this.props.data.refetch());
+  // }
 
   onBirdDelete(id) {
     this.props.mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
   }
-
-  // onChange(ev) {
-  //   this.setState({ [ev.target.name]: ev.target.value });
-  // }
-
-  // onSubmitTitle() {
-  //   // event.preventDefault();
-  //   this.props.mutate({
-  //     variables: {
-  //       id: this.props.data.entry.id,
-  //       title: this.state.title
-  //       // title: this.state.title 
-  //     }
-  //   })
-  //     .then(() => this.props.data.refetch());
-  // }
 
   renderBirds() {
 
@@ -96,20 +72,14 @@ class EntryDetailNew extends Component {
       return (
         <div>
           <Link to="/">Back</Link>
-          <button onClick={this.onEdit}>Edit Bird List</button>
+          <button onClick={this.onEdit}> Edit </button>
           <h3>{entry.title}</h3>
 
-          {/*<form>*/}
-          {/*<label>Edit Title:</label>
-          <input
-            onChange={this.onChange}
-            value={theTitle}
-            name="title"
-          />
-          <button onClick={this.onSubmitTitle(event)}>Change Title</button>
-          </form>*/}
-        
-          <EditTitle id={this.props.data.entry.id} title={this.props.data.entry.title}/>
+          {
+            this.state.edit ? (
+              <EditTitle id={this.props.data.entry.id} title={this.props.data.entry.title} />
+            ) : (null)
+          }
 
           <div>
             <h3>Birds List</h3>
@@ -118,6 +88,13 @@ class EntryDetailNew extends Component {
             </ul>
           </div>
           <BirdCreate entryId={this.props.params.id} />
+          <div>
+            {
+              this.state.edit ? (
+                <EntryDelete id={this.props.data.entry.id} onClick={() => this.props.data.refetch()}/>
+              ) : (null)
+            }
+          </div>
         </div>
       )
     }
@@ -131,12 +108,6 @@ const mutation = gql`
       likes
     }
   },
-  # mutation editEntry($id: ID, $title: String) {
-  #   editEntry(id: $id, title: $title) {
-  #     id
-  #     title
-  #   }
-  # }
 `;
 
 

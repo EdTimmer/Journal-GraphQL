@@ -34,10 +34,10 @@ class EditTitle extends Component {
     this.setState({ edit: !this.state.edit })
   }
 
-  onEntryEdit(id) {
-    this.props.mutate({ variables: { id } })
-      .then(() => this.props.data.refetch());
-  }
+  // onEntryEdit(id) {
+  //   this.props.mutate({ variables: { id } })
+  //     .then(() => this.props.data.refetch());
+  // }
 
   // onBirdDelete(id) {        
   //   this.props.mutate({ variables: { id, title } })
