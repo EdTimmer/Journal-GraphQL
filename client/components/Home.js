@@ -30,7 +30,7 @@ class Home extends Component {
         <div>Loading...</div>
       );
     }
-    // else {
+
     return (
       <div className="background">
         <img src={bird1} width={400} />
@@ -50,7 +50,6 @@ class Home extends Component {
       </div>
 
     )
-    // }    
   }
 }
 
