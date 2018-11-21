@@ -15,12 +15,12 @@ const EntrySchema = new Schema({
   usePushEach: true
 });
 
-EntrySchema.statics.addBird = function(id, content) {
+EntrySchema.statics.addBird = function(id, name) {
   const Bird = mongoose.model('bird');
 
   return this.findById(id)
     .then(entry => {
-      const bird = new Bird({ content, entry })
+      const bird = new Bird({ name, entry })
       entry.birds.push(bird)
       return Promise.all([bird.save(), entry.save()])
         .then(([bird, entry]) => entry);

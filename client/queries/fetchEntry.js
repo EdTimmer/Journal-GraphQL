@@ -7,7 +7,7 @@ export default gql`
       title
       birds {
         id
-        content
+        name
         likes
       }
     }

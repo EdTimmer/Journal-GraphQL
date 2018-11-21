@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import fetchEntry from '../queries/fetchEntry';
 import BirdCreate from './BirdCreate';
 import EditTitle from './EditTitle';
+import EditBird from './EditBird';
 import EntryDelete from './EntryDelete';
 import bird2 from '../images/bird2.png';
 
@@ -39,10 +40,10 @@ class EntryDetail extends Component {
 
   renderBirds() {
 
-    return this.props.data.entry.birds.map(({ id, content, likes }) => {
+    return this.props.data.entry.birds.map(({ id, name, likes }) => {
       return (
         <li key={id} className="collection-item">
-          {content}
+          {name}
           {
             this.state.edit ? (
               <i
@@ -53,6 +54,7 @@ class EntryDetail extends Component {
               </i>
             ) : (null)
           }
+          <EditBird name={name} id={id} />
         </li>
       )
     })
@@ -68,7 +70,7 @@ class EntryDetail extends Component {
       );
     }
     else {
-      console.log(this.state)
+      // console.log(this.state)
       const theTitle = this.state.title ? this.state.title : ''
       return (
         <div>
@@ -91,6 +93,9 @@ class EntryDetail extends Component {
             <ul className="collection">
               {this.renderBirds()}
             </ul>
+          </div>
+          <div>
+            
           </div>
           <BirdCreate entryId={this.props.params.id} />
           <div>

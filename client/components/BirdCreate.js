@@ -6,7 +6,7 @@ class BirdCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: ''
+      name: ''
     };
   }
 
@@ -14,10 +14,10 @@ class BirdCreate extends Component {
     event.preventDefault()
     this.props.mutate({
       variables: {
-        content: this.state.content,
+        name: this.state.name,
         entryId: this.props.entryId
       }
-    }).then(() => this.setState({ content: '' }))
+    }).then(() => this.setState({ name: '' }))
   }
 
   render() {
@@ -25,8 +25,8 @@ class BirdCreate extends Component {
       <form onSubmit={this.onSubmit.bind(this)}>
         <label>Add a Bird</label>
         <input 
-          value={this.state.content}
-          onChange={event => this.setState({ content: event.target.value })}
+          value={this.state.name}
+          onChange={event => this.setState({ name: event.target.value })}
         />
       </form>
     )
@@ -34,12 +34,12 @@ class BirdCreate extends Component {
 }
 
 const mutation = gql`
-  mutation AddBirdToEntry($content: String, $entryId: ID) {
-    addBirdToEntry(content: $content, entryId: $entryId) {
+  mutation AddBirdToEntry($name: String, $entryId: ID) {
+    addBirdToEntry(name: $name, entryId: $entryId) {
       id 
       birds {
         id
-        content
+        name
         likes
       }
     }

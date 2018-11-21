@@ -7,7 +7,7 @@ const BirdSchema = new Schema({
     ref: 'entry'
   },
   likes: { type: Number, default: 0 },
-  content: { type: String }
+  name: { type: String }
 });
 
 BirdSchema.statics.like = function(id) {

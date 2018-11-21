@@ -27,10 +27,10 @@ class BirdListEdit extends Component {
   }
 
   renderBirds() {
-    return this.props.birds.map(({ id, content, likes }) => {
+    return this.props.birds.map(({ id, name, likes }) => {
       return (
         <li key={id} className="collection-item">
-          {content}
+          {name}
           <i
             className="material-icons"
             onClick={() => this.onBirdDelete(id)}
@@ -43,7 +43,7 @@ class BirdListEdit extends Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     if (this.props.loading) {
       return null;
     }
