@@ -73,8 +73,11 @@ class EntryDetail extends Component {
       return (
         <div>
           <Link to="/">Home</Link>
-          <button onClick={this.onEdit}> Edit </button>
+          <br />
           <img src={bird2} width={400} />
+          <br />
+          <button className="btn blue" onClick={this.onEdit}> Edit </button>
+          
           <h3>{entry.title}</h3>
 
           {
@@ -84,7 +87,7 @@ class EntryDetail extends Component {
           }
 
           <div>
-            <h3>Birds List</h3>
+            <h5><i>Species List</i></h5>
             <ul className="collection">
               {this.renderBirds()}
             </ul>
@@ -111,9 +114,6 @@ const mutation = gql`
     }
   },
 `;
-
-
-
 
 export default graphql(mutation)(
   graphql(fetchEntry, {

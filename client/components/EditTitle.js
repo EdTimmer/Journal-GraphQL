@@ -78,7 +78,7 @@ class EditTitle extends Component {
             value={theTitle}
             name="title"
           />
-          <button onClick={this.onSubmitTitle}>Change Title</button>
+          <button className="btn blue" onClick={this.onSubmitTitle}>Change Title</button>          
         </div>
       )
     // }

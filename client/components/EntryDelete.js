@@ -9,8 +9,7 @@ class EntryDelete extends Component {
     super(props);
     this.onEntryDelete = this.onEntryDelete.bind(this);
   }
-  //REMOVE CONSTRUCTOR?  
-  
+   
   onEntryDelete() {
     this.props.mutate({ variables: { id: this.props.id } })    
     .then(() => this.props.data.refetch())
@@ -20,7 +19,7 @@ class EntryDelete extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.onEntryDelete}>Delete Entire Entry</button>
+        <button className="btn red" onClick={this.onEntryDelete}>Delete Entire Entry</button>
       </div>
     )
   }

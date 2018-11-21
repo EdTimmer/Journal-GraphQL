@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link, hashHistory } from 'react-router';
 import query from '../queries/fetchEntries';
+import bird3 from '../images/bird3.png';
 
 
 class EntryCreate extends Component {
@@ -26,6 +27,11 @@ class EntryCreate extends Component {
     return (
       <div>
         <Link to="/">Home</Link>
+        <br />
+        <img src={bird3} width={400} />
+        <br />
+        
+        
         <h3>Create a New Entry</h3>
         <form onSubmit={this.onSubmit.bind(this)}>
           <label>Entry Title:</label>
