@@ -33,7 +33,10 @@ class Home extends Component {
 
     return (
       <div>
-        <img src={bird1} width={400} />
+        <div>
+          <img src={bird1} width={400} className="image"/>
+        </div>
+
         <div>
           <h3>Journal Entries</h3>
         </div>

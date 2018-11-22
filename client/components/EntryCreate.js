@@ -28,11 +28,9 @@ class EntryCreate extends Component {
   render() {
     return (
       <div>
-        <Link to="/">Home</Link>
-        <br />
-        <img src={vintage1} width={800} />
-        <br />
-
+        <div>
+          <img src={vintage1} width={900} className="image"/>
+        </div>
 
         <h3>Create a New Entry</h3>
         <form onSubmit={this.onSubmit.bind(this)}>

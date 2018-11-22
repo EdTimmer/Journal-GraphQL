@@ -59,25 +59,21 @@ class EntryDetail extends Component {
   }
 
   render() {
-
-
     const { entry } = this.props.data
-
     if (!entry) {
       return (
         <div>Loading...</div>
       );
     }
     else {
-      // console.log(this.state)
       const theTitle = this.state.title ? this.state.title : ''
       return (
         <div>
-          <Link to="/">Home</Link>
-          <br />
-          <img src={bird2} width={400} />
-          <br />
-          <button className="btn blue" onClick={this.onEdit}> Edit </button>
+          <div>
+            <img src={bird2} width={400} className="image"/>
+          </div>
+ 
+          
 
           <h3>{entry.title}</h3>
           <h5>Date: {entry.date}</h5>
@@ -106,6 +102,10 @@ class EntryDetail extends Component {
               ) : (null)
             }
           </div>
+          <div style={{padding: '30px'}}>
+            <button className="btn blue" onClick={this.onEdit}> Edit </button>
+          </div>
+          
         </div>
       )
     }

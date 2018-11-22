@@ -11,15 +11,9 @@ class EditEntry extends Component {
       date: this.props.entry ? this.props.entry.date : '',
       location: this.props.entry ? this.props.entry.location : '',
     }
-    // this.onEdit = this.onEdit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmitTitle = this.onSubmitTitle.bind(this);
   }
-
-  // onEdit() {
-  //   event.preventDefault();
-  //   this.setState({ edit: !this.state.edit })
-  // }
 
   onChange(ev) {
     this.setState({ [ev.target.name]: ev.target.value });

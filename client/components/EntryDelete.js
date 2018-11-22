@@ -18,7 +18,7 @@ class EntryDelete extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{padding: '30px'}}>
         <button className="btn red" onClick={this.onEntryDelete}>Delete Entire Entry</button>
       </div>
     )
