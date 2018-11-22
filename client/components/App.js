@@ -6,7 +6,7 @@ export default ({ children }) => {
     <div className="container">
       <div className="nav">
         <div className="nav-item">
-          <Link to="/" style={{color: 'white'}}>HOME</Link>
+          <Link to="/" style={{color: 'white', fontWeight: 'bold', fontSize: '20px'}}>HOME</Link>
         </div>
       </div>
       {children}

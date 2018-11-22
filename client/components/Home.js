@@ -16,7 +16,7 @@ class Home extends Component {
       return (
         <li key={id} className="collection-item">
           <Link to={`/entries/${id}`}>
-            {title}
+            <h5>{title}</h5>
           </Link>
         </li>
       );
@@ -33,23 +33,30 @@ class Home extends Component {
 
     return (
       <div>
-        <div>
-          <img src={bird1} width={400} className="image"/>
+        <div className="wrapper">
+          <div className="box">
+            <img src={bird1} width={400} className="image"/>
+          </div>
+          <div className="box">
+            <h2>Birding Journal</h2>
+          </div>
         </div>
-
         <div>
-          <h3>Journal Entries</h3>
+          <h4><i>Journal Entries</i></h4>
         </div>
 
         <ul className="collection">
           {this.renderEntries()}
         </ul>
-        <Link
-          to="/entries/new"
-          className="btn-floating btn-large red right"
-        >
-          <i className="material-icons">add</i>
-        </Link>
+        <div>
+          <Link 
+            to="/entries/new"
+            className="btn-floating btn-large green right"                    
+          >
+            <i className="material-icons">add</i>
+          </Link>
+        </div>
+        <div style={{padding: '20px'}}><br /></div>
       </div>
 
     )

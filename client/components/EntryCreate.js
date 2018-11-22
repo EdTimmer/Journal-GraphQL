@@ -50,7 +50,7 @@ class EntryCreate extends Component {
             value={this.state.value}
           />
         </form>
-        <button className="btn blue" onClick={this.onSubmit.bind(this)}>Save</button>
+        <button className="btn green" onClick={this.onSubmit.bind(this)}>Save</button>
       </div>
     )
   }

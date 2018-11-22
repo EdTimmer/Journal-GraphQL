@@ -39,7 +39,7 @@ class EntryDetail extends Component {
           {
             this.state.edit ? (
               <EditBird name={name} id={id} />
-            ) : (name)
+            ) : (<p>{name}</p>)
           }
 
           {
@@ -69,15 +69,22 @@ class EntryDetail extends Component {
       const theTitle = this.state.title ? this.state.title : ''
       return (
         <div>
-          <div>
-            <img src={bird2} width={400} className="image"/>
+          <div className="wrapper">
+            <div className="box">
+              <img src={bird2} width={400} className="image"/>
+            </div>
+            <div className="box">
+              <h2>{entry.title}</h2>
+              <div style={{padding: '30px'}}>
+                <button className="btn green" onClick={this.onEdit}> Edit </button>
+              </div>
+            </div>          
           </div>
- 
           
 
-          <h3>{entry.title}</h3>
-          <h5>Date: {entry.date}</h5>
-          <h5>Location: {entry.location}</h5>
+
+          <p><i>Date: </i>{entry.date}</p>
+          <p style={{paddingBottom: '20px'}}><i>Location: </i>{entry.location}</p>
 
           {
             this.state.edit ? (
@@ -102,9 +109,7 @@ class EntryDetail extends Component {
               ) : (null)
             }
           </div>
-          <div style={{padding: '30px'}}>
-            <button className="btn blue" onClick={this.onEdit}> Edit </button>
-          </div>
+
           
         </div>
       )
