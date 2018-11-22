@@ -39,11 +39,15 @@ class EntryDetail extends Component {
   }
 
   renderBirds() {
-
     return this.props.data.entry.birds.map(({ id, name, likes }) => {
       return (
         <li key={id} className="collection-item">
-          {name}
+          {
+            this.state.edit ? (
+              <EditBird name={name} id={id} />
+            ) : (name)
+          }
+          
           {
             this.state.edit ? (
               <i
@@ -54,11 +58,12 @@ class EntryDetail extends Component {
               </i>
             ) : (null)
           }
-          <EditBird name={name} id={id} />
+          
         </li>
       )
     })
-  }
+  }  
+
   render() {
 
 

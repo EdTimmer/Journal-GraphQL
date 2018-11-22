@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-//NEED TO PROVIDE THESE PROPS:
-//this.props.data.entry.birds -> this.props.birds
-
-
 class EditBird extends Component {
   constructor(props) {
     super(props);
@@ -13,15 +9,9 @@ class EditBird extends Component {
       id: this.props.id,
       name: this.props.name
     }
-    // this.onEdit = this.onEdit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmitName = this.onSubmitName.bind(this);
   }
-
-  // onEdit() {
-  //   event.preventDefault();
-  //   this.setState({ edit: !this.state.edit })
-  // }
 
   onChange(ev) {
     this.setState({ [ ev.target.name ]: ev.target.value });
@@ -38,16 +28,16 @@ class EditBird extends Component {
   
   render() {
     return (
-      <div>              
-              <label>Edit Bird:</label>
-              <input
-                onChange={ this.onChange }
-                value={this.state.name}
-                name="name"
-              />
-              <button className="btn blue" onClick={this.onSubmitName}>Change Bird</button>
-  
-
+      <div>          
+        <form onSubmit={this.onSubmitName(this.state.id, this.state.name)}>    
+          <label>Edit Bird:</label>
+          <input
+            onChange={ this.onChange }
+            value={this.state.name}
+            name="name"
+          />
+        </form>
+          {/*<button className="btn blue" onClick={this.onSubmitName()}>Change Bird</button>*/}
       </div>
       
     )

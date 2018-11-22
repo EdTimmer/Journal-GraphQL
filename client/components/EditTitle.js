@@ -36,13 +36,15 @@ class EditTitle extends Component {
     const theTitle = this.state.title ? this.state.title : ''
     return (
       <div>
-        <label>Edit Title:</label>
-        <input
-          onChange={ this.onChange }
-          value={theTitle}
-          name="title"
-        />
-        <button className="btn blue" onClick={this.onSubmitTitle}>Change Title</button>          
+        <form onSubmit={this.onSubmitTitle}>
+          <label>Edit Title:</label>
+          <input
+            onChange={ this.onChange }
+            value={theTitle}
+            name="title"
+          />
+        </form>        
+        {/*<button className="btn blue" onClick={this.onSubmitTitle}>Change Title</button>*/}       
       </div>
     )
   }
