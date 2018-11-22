@@ -32,7 +32,7 @@ class Home extends Component {
     }
 
     return (
-      <div className="background">
+      <div>
         <img src={bird1} width={400} />
         <div>
           <h3>Journal Entries</h3>

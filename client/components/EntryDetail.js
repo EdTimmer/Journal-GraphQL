@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Link } from 'react-router';
 import fetchEntry from '../queries/fetchEntry';
 import BirdCreate from './BirdCreate';
-import EditTitle from './EditTitle';
+import EditEntry from './EditEntry';
 import EditBird from './EditBird';
 import EntryDelete from './EntryDelete';
 import bird2 from '../images/bird2.png';
@@ -14,24 +14,18 @@ class EntryDetail extends Component {
     super(props);
     this.state = {
       edit: false,
-      // title: 'state title',
       id: this.props.data.entry ? this.props.data.entry.id : '',
-      title: this.props.data.entry ? this.props.data.entry.title : ''
+      title: this.props.data.entry ? this.props.data.entry.title : '',
+      date: this.props.data.entry ? this.props.data.entry.date : '',
+      location: this.props.data.entry ? this.props.data.entry.location : '',
     }
     this.onEdit = this.onEdit.bind(this);
-    // this.onChange = this.onChange.bind(this);
-    // this.onSubmitTitle = this.onSubmitTitle.bind(this);
   }
 
   onEdit() {
     event.preventDefault();
     this.setState({ edit: !this.state.edit })
   }
-
-  // onEntryEdit(id) {
-  //   this.props.mutate({ variables: { id } })
-  //     .then(() => this.props.data.refetch());
-  // }
 
   onBirdDelete(id) {
     this.props.mutate({ variables: { id } })
@@ -47,7 +41,7 @@ class EntryDetail extends Component {
               <EditBird name={name} id={id} />
             ) : (name)
           }
-          
+
           {
             this.state.edit ? (
               <i
@@ -58,11 +52,11 @@ class EntryDetail extends Component {
               </i>
             ) : (null)
           }
-          
+
         </li>
       )
     })
-  }  
+  }
 
   render() {
 
@@ -84,12 +78,14 @@ class EntryDetail extends Component {
           <img src={bird2} width={400} />
           <br />
           <button className="btn blue" onClick={this.onEdit}> Edit </button>
-          
+
           <h3>{entry.title}</h3>
+          <h5>Date: {entry.date}</h5>
+          <h5>Location: {entry.location}</h5>
 
           {
             this.state.edit ? (
-              <EditTitle id={this.props.data.entry.id} title={this.props.data.entry.title} />
+              <EditEntry entry={this.props.data.entry} />
             ) : (null)
           }
 
@@ -100,7 +96,7 @@ class EntryDetail extends Component {
             </ul>
           </div>
           <div>
-            
+
           </div>
           <BirdCreate entryId={this.props.params.id} />
           <div>

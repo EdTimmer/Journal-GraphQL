@@ -9,6 +9,8 @@ const EntryType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    date: { type: GraphQLString },
+    location: { type: GraphQLString },
     birds: {
       type: new GraphQLList(BirdType),
       resolve(parentValue) {

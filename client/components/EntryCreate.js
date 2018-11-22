@@ -3,14 +3,16 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link, hashHistory } from 'react-router';
 import query from '../queries/fetchEntries';
-import bird3 from '../images/bird3.png';
+import vintage1 from '../images/vintage1.jpg';
 
 
 class EntryCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ''
+      title: '',
+      date: '',
+      location: ''
     };
   }
 
@@ -18,7 +20,7 @@ class EntryCreate extends Component {
     event.preventDefault();
 
     this.props.mutate({
-      variables: { title: this.state.title },
+      variables: { title: this.state.title, date: this.state.date, location: this.state.location },
       refetchQueries: [{ query }]
     }).then(() => hashHistory.push('/'));
   }
@@ -28,27 +30,40 @@ class EntryCreate extends Component {
       <div>
         <Link to="/">Home</Link>
         <br />
-        <img src={bird3} width={400} />
+        <img src={vintage1} width={800} />
         <br />
-        
-        
+
+
         <h3>Create a New Entry</h3>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <label>Entry Title:</label>
+          <label>Title:</label>
           <input
             onChange={event => this.setState({ title: event.target.value })}
             value={this.state.value}
           />
+          <label>Date:</label>
+          <input
+            onChange={event => this.setState({ date: event.target.value })}
+            value={this.state.value}
+          />
+          <label>Location:</label>
+          <input
+            onChange={event => this.setState({ location: event.target.value })}
+            value={this.state.value}
+          />
         </form>
+        <button className="btn blue" onClick={this.onSubmit.bind(this)}>Save</button>
       </div>
     )
   }
 }
 
 const mutation = gql`
-  mutation AddEntry($title: String) {
-    addEntry(title: $title) {
+  mutation AddEntry($title: String, $date: String, $location: String) {
+    addEntry(title: $title, date: $date, location: $location) {
       title
+      date
+      location
     }
   }
 `;

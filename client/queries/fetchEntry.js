@@ -5,10 +5,11 @@ export default gql`
     entry(id: $id) {
       id
       title
+      date
+      location
       birds {
         id
         name
-        likes
       }
     }
   }

@@ -12,22 +12,33 @@ const mutation = new GraphQLObjectType({
     addEntry: {
       type: EntryType,
       args: {
-        title: { type: GraphQLString }
+        title: { type: GraphQLString },
+        date: { type: GraphQLString },
+        location: { type: GraphQLString }
       },
-      resolve(parentValue, { title }) {
-        return (new Entry({ title })).save()
+      resolve(parentValue, { title, date, location }) {
+        return (new Entry({ title, date, location })).save()
+      }
+    },
+    deleteEntry: {
+      type: EntryType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Entry.remove({ _id: id });
       }
     },
     editEntry: {
       type: EntryType,
       args: {
         id: { type: GraphQLID },
-        title: { type: GraphQLString }        
+        title: { type: GraphQLString },
+        date: { type: GraphQLString },
+        location: { type: GraphQLString }        
       },
       resolve(parentValue, params) {
         return Entry.findByIdAndUpdate(
           params.id,
-          { $set: { title: params.title } },
+          { $set: { title: params.title, date: params.date, location: params.location } },
           { new: true }
         )
           .catch(err => new Error(err));
@@ -48,13 +59,6 @@ const mutation = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parentValue, { id }) {
         return Bird.like(id);
-      }
-    },
-    deleteEntry: {
-      type: EntryType,
-      args: { id: { type: GraphQLID } },
-      resolve(parentValue, { id }) {
-        return Entry.remove({ _id: id });
       }
     },
     deleteBird: {

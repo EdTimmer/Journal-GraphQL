@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const EntrySchema = new Schema({
   title: { type: String },
+  date: { type: String },
+  location: { type: String },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'user'
