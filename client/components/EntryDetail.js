@@ -33,7 +33,7 @@ class EntryDetail extends Component {
   }
 
   renderBirds() {
-    return this.props.data.entry.birds.map(({ id, name, likes }) => {
+    return this.props.data.entry.birds.map(({ id, name }) => {
       return (
         <li key={id} className="collection-item">
           {
@@ -121,7 +121,6 @@ const mutation = gql`
   mutation DeleteBird($id: ID) {
     deleteBird(id: $id) {
       id
-      likes
     }
   },
 `;

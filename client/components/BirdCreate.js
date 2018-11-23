@@ -40,7 +40,6 @@ const mutation = gql`
       birds {
         id
         name
-        likes
       }
     }
   }

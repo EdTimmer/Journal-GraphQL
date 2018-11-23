@@ -3,8 +3,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link, hashHistory } from 'react-router';
 import query from '../queries/fetchEntries';
-import vintage1 from '../images/vintage1.jpg';
-
 
 class EntryCreate extends Component {
   constructor(props) {

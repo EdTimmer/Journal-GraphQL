@@ -13,7 +13,6 @@ const BirdType = new GraphQLObjectType({
   name:  'BirdType',
   fields: () => ({
     id: { type: GraphQLID },
-    likes: { type: GraphQLInt },
     name: { type: GraphQLString },
     entry: {
       type: require('./entry_type'),

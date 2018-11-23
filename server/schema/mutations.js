@@ -54,13 +54,6 @@ const mutation = new GraphQLObjectType({
         return Entry.addBird(entryId, name);
       }
     },
-    likeBird: {
-      type: BirdType,
-      args: { id: { type: GraphQLID } },
-      resolve(parentValue, { id }) {
-        return Bird.like(id);
-      }
-    },
     deleteBird: {
       type: BirdType,
       args: { id: { type: GraphQLID } },
